@@ -34,15 +34,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        navigationController?.navigationBar.isTranslucent = true
-//        navigationController?.navigationBar.prefersLargeTitles = false
-        
-//        if let carteiraSalva = UserDefaults.standard.object(forKey: "carteira") {
-//            operacoesAcoes.carteiraAcoes = carteiraSalva as! [CarteiraDeAcoes] }
-//        else{
-//            operacoesAcoes.carteiraAcoes = []
-//        }
-        
         acoesTableView.delegate = self
         acoesTableView.dataSource = self
         acoesTableView.register(UINib(nibName: "StandardStockListCell", bundle: nil), forCellReuseIdentifier: "standardCell")
@@ -137,6 +128,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     func addStockToWallet (codigo: String, nome: String, qty: Int, preco: Float, oper: String, data: Date, custo: Float) {
         operacoesAcoes.addAcao(cod: codigo, qty: qty, preco: preco, operacao: oper, data: data, nome: nome, custo: custo)
         print("Codigo: \(codigo) Quantidade: \(qty) Preço: \(preco) Tipo da Operacao: \(oper) Data \(data)")
+        
         acoesTableView.reloadData()
     }
     

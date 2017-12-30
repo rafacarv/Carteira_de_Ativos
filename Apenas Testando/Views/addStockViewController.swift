@@ -14,9 +14,13 @@ protocol AddStock {
     func addStockToWallet (codigo: String, nome: String, qty: Int, preco: Float, oper: String, data: Date, custo: Float)
 }
 
+struct ativos {
+    var Papel: String
+    var Nome: String
+    var Razão: String
+}
+
 class addStockViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
-
-
     @IBOutlet weak var codigoLabel: UILabel!
     @IBOutlet weak var nomeLabel: UILabel!
     @IBOutlet weak var qtyTextField: UITextField!
@@ -25,12 +29,14 @@ class addStockViewController: UIViewController, UITableViewDelegate, UITableView
     @IBOutlet weak var dataOperacao: UIDatePicker!
     @IBOutlet weak var ativosTableView: UITableView!
     @IBOutlet weak var selecionaAtivoView: UIView!
+    @IBOutlet weak var searchBar: UISearchBar!
     
     var delegate : AddStock?
-    var ativosArray : [[String:String]] = [[:]]
+    var searchActive : Bool = false
+    var filteredData = [ativos]()
+    var ativosArrayFinal = [ativos]()
     
     override func viewWillAppear(_ animated: Bool) {
-//        codigoTextField.becomeFirstResponder()
          carregaAtivos()
     }
     
@@ -40,42 +46,57 @@ class addStockViewController: UIViewController, UITableViewDelegate, UITableView
         ativosTableView.delegate = self
         ativosTableView.dataSource = self
         
-        
         selecionaAtivoView.layer.cornerRadius = 3
         
         selecionaAtivoView.layer.shadowColor = UIColor.black.cgColor
         selecionaAtivoView.layer.shadowOpacity = 1
         selecionaAtivoView.layer.shadowOffset = CGSize.zero
         selecionaAtivoView.layer.shadowRadius = 10
-        
     }
     
     func carregaAtivos () {
         let path = Bundle.main.path(forResource: "ativos B3", ofType: "plist")
-        ativosArray = NSArray(contentsOfFile: path!) as! [[String:String]]
+        let ativosArray = NSArray(contentsOfFile: path!) as! [[String:String]]
+        
+        ativosArrayFinal = ativosArray.map{ativos.init(Papel: $0["Papel"] as! String, Nome: $0["Nome Comercial"] as! String, Razão: $0["Razão Social"] as! String)}
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return ativosArray.count
+        if(searchActive) {
+            return filteredData.count
+        } else {
+            return ativosArrayFinal.count
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = ativosTableView.dequeueReusableCell(withIdentifier: "celulaAtivos", for: indexPath)
-        let item = ativosArray[indexPath.row]
         
-        cell.textLabel?.text = item["Papel"]
-        cell.detailTextLabel?.text = item["Nome Comercial"]
-
+        if(searchActive){
+            let item = filteredData[indexPath.row]
+            cell.textLabel?.text = item.Papel
+            cell.detailTextLabel?.text = item.Nome
+        } else {
+            let item = ativosArrayFinal[indexPath.row]
+            cell.textLabel?.text = item.Papel
+            cell.detailTextLabel?.text = item.Nome
+        }
+        
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        let item = ativosArray[indexPath.row]
-        codigoLabel.text = item["Papel"]
-        nomeLabel.text = item["Nome Comercial"]
-        
+        if(searchActive){
+            let item = filteredData[indexPath.row]
+            codigoLabel.text = item.Papel
+            nomeLabel.text = item.Nome
+        } else {
+            let item = ativosArrayFinal[indexPath.row]
+            codigoLabel.text = item.Papel
+            nomeLabel.text = item.Nome
+        }
         selecionaAtivoView.isHidden = true
     }
 
@@ -114,13 +135,38 @@ class addStockViewController: UIViewController, UITableViewDelegate, UITableView
         }
     }
     
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-       
+    //MARK: - Metodos para a barra de busca funcionar
+    
+        func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+            searchActive = true;
+        }
         
+        func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+            searchActive = false;
+            ativosTableView.reloadData()
+        }
+    
+        func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+            searchActive = false;
+            searchBar.text = ""
+            ativosTableView.reloadData()
+        }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         
+        if searchBar.text == "" {
+            searchActive = false
+        } else {
+            if let text = searchBar.text {
+                filteredData = ativosArrayFinal.filter {$0.Papel.lowercased().contains(text.lowercased()) || $0.Nome.lowercased().contains(text.lowercased())}
+                searchActive = true
+            } else {
+                filteredData = []
+                searchActive = false
+            }
+        }
+        ativosTableView.reloadData()
     }
-    
-    
     
     func calculaCustos (qty: Int, preco: Float) -> Float {
         
@@ -137,3 +183,4 @@ class addStockViewController: UIViewController, UITableViewDelegate, UITableView
         
     }
 }
+

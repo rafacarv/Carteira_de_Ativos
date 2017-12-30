@@ -18,16 +18,6 @@ class ListaOperacoes {
     
     init() {
         
-        //
-        // Algumas operaçÕes default para evitar ficar digitando toda vez
-        //
-        //        let date = Date(timeIntervalSinceReferenceDate: 410220000)
-        //        listaOperacoes.append(Operacao(cod: "EMBR3", qty: 200, preco: 20, operacao: "C", data: date, nome: "Embraer", custo: 10))
-        //        listaOperacoes.append(Operacao(cod: "EMBR3", qty: 200, preco: 15, operacao: "C", data: date, nome: "Embraer", custo: 11))
-        //        listaOperacoes.append(Operacao(cod: "EMBR3", qty: 100, preco: 10, operacao: "V", data: date, nome: "Embraer", custo: 12))
-        //        listaOperacoes.append(Operacao(cod: "USIM5", qty: 100, preco: 5, operacao: "C", data: date, nome: "Usiminas", custo: 13))
-        //        listaOperacoes.append(Operacao(cod: "USIM5", qty: 100, preco: 8, operacao: "C", data: date, nome: "Usiminas", custo: 14))
-        
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         let context = appDelegate.persistentContainer.viewContext
         
@@ -48,15 +38,14 @@ class ListaOperacoes {
                     let data = oper.value(forKey: "data") as! Date
                     let nome = oper.value(forKey: "nome") as! String
                     let custo = oper.value(forKey: "custo") as! Float
-                    
-                    print("\(cod) \(qty) \(preco) \(operacao) \(data) \(nome) \(custo)")
-                    
+     
                     listaOperacoes.append(Operacao(cod: cod, qty: qty, preco: preco, operacao: operacao, data: data, nome: nome, custo: custo))
                 }
-                
-            }else{
+            } else {
                 print("O Modelo esta vazio!")
             }
+            ordenaPorData()
+        
         } catch {
             print("Falha ao carregar dados do modelo!")
         }
@@ -97,7 +86,7 @@ class ListaOperacoes {
         } catch  {
             print("Falha ao salvar dados.")
         }
-        
+        consolidaAcoes()
     }
     
     func consolidaAcoes () {
@@ -106,6 +95,7 @@ class ListaOperacoes {
         var precoMedio : Float = 0
 
         carteiraAcoes = []
+        ordenaPorData()
         
         for items in listaOperacoes {
             ativos.insert(items.codigoAcao)
@@ -128,21 +118,26 @@ class ListaOperacoes {
                     custo += operacao.custoOperacao
                     }
                     else if operacao.tipoOperacao == "V"{
-                    qtyTotal = qtyTotal - operacao.quantidadeAcoes
+                    qtyTotal -= operacao.quantidadeAcoes
                     custo -= operacao.custoOperacao
-                        
+                        if qtyTotal == 0 {
+                            print("O ativo \(ativo) zerou!")
+                            precoMedio = 0
+                            custo = 0
+                        }
                     }
                 }
             }
             if qtyTotal != 0 {
                 carteiraAcoes.append(CarteiraDeAcoes(cod: ativo, nome: nomeAtivo, qty: qtyTotal, preco: precoMedio, custo: custo))
-            } else {
-                print("O ativo \(ativo) zerou!")
-                precoMedio = 0
-                custo = 0
             }
         }
+    }
+    
+    func ordenaPorData () {
         
-        //UserDefaults.standard.set( carteiraAcoes , forKey: "carteira" )
+        listaOperacoes.sort(by: { (operacao1, operacao2) -> Bool in
+            operacao1.dataOperacao < operacao2.dataOperacao
+        })
     }
 }

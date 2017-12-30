@@ -181,7 +181,7 @@
                                             </tableViewCell>
                                         </prototypes>
                                     </tableView>
-                                    <searchBar contentMode="redraw" placeholder="Buscar ativo" showsSearchResultsButton="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lYR-ue-ge0">
+                                    <searchBar contentMode="redraw" placeholder="Buscar ativo" translatesAutoresizingMaskIntoConstraints="NO" id="lYR-ue-ge0">
                                         <rect key="frame" x="0.0" y="0.0" width="345" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="grj-jY-yFo"/>
@@ -226,6 +226,7 @@
                         <outlet property="operacaoAcao" destination="wht-Ms-q1b" id="O7o-eu-cgl"/>
                         <outlet property="precoTextField" destination="1kT-c9-ohV" id="cTn-6t-vk8"/>
                         <outlet property="qtyTextField" destination="uLP-FQ-tU5" id="5YM-0Y-bci"/>
+                        <outlet property="searchBar" destination="lYR-ue-ge0" id="f9i-aZ-Vvi"/>
                         <outlet property="selecionaAtivoView" destination="lZQ-eW-p0w" id="46i-pv-Ucb"/>
                         <segue destination="SN5-Qx-ciL" kind="unwind" identifier="unwindToViewController" unwindAction="unwindToViewControllerWithSegue:" id="wlp-f8-EBe"/>
                     </connections>
@@ -415,7 +416,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="hJe-px-BFT" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="WaO-NL-OS1">
+                    <navigationBar key="navigationBar" contentMode="scaleAspectFit" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="WaO-NL-OS1">
                         <rect key="frame" x="0.0" y="20" width="375" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.1285155713558197" green="0.14802360534667969" blue="0.22484204173088074" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

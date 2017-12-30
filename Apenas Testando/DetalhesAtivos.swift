@@ -62,7 +62,6 @@ class DetalhesAtivos: UIViewController, UITableViewDataSource, UITableViewDelega
         let resultadoLiquido = vendaTotal-valorTotal-custoAquisicao-custoVenda
         let resultadoPercentual = resultadoLiquido / valorTotal * 100
         
-        print("Resultado percentual \(resultadoPercentual)")
         
         precoMedioLabel.text = String(format: "R$ %.2f", precoMedio)
         quantidadeTotalLabel.text = String(quantidadeTotal)
