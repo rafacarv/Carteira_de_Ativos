@@ -8,10 +8,7 @@
 
 import UIKit
 import ChameleonFramework
-
-protocol RemoveOperacao {
-    func removeOperacao (indice: Int)
-}
+import CoreData
 
 class DetalhesAtivos: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
@@ -28,9 +25,12 @@ class DetalhesAtivos: UIViewController, UITableViewDataSource, UITableViewDelega
     
     @IBOutlet weak var listaOperacoes: UITableView!
     
+    @IBAction func addAcao(_ sender: UIBarButtonItem) {
+        performSegue(withIdentifier: "addStockFromDetails", sender: self)
+    }
     var todasAsOperacoes: [Operacao] = []
     var nomeDoAtivo : String = ""
-    var delegate : RemoveOperacao?
+    var codigoDoAtivo : String = ""
     
     var precoDeMercado : Float = 10
     var quantidadeTotal: Int = 0
@@ -38,6 +38,8 @@ class DetalhesAtivos: UIViewController, UITableViewDataSource, UITableViewDelega
     var precoVenda: Float = 1
     var custoVenda: Float = 0
     var custoAquisicao: Float = 0
+    
+    var dataOperacao = Date()
         
     override func viewWillAppear(_ animated: Bool) {
         listaOperacoes.becomeFirstResponder()
@@ -98,12 +100,48 @@ class DetalhesAtivos: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        todasAsOperacoes.remove(at: indexPath.row)
         
-        let indice = [indexPath]
-        listaOperacoes.deleteRows(at: indice, with: .right)
-        delegate?.removeOperacao(indice: indexPath.row)
-
+        let data = todasAsOperacoes[indexPath.row].dataOperacao
+        
+        todasAsOperacoes.remove(at: indexPath.row)
+        listaOperacoes.deleteRows(at: [indexPath], with: .right)
+        removeOperacao(data: data)
+        listaOperacoes.reloadData()
+    }
+    
+    func removeOperacao (data: Date) {
+        
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let context = appDelegate.persistentContainer.viewContext
+        
+        let requisicao = NSFetchRequest<NSFetchRequestResult>(entityName: "Operacoes")
+        
+        let predicate = NSPredicate(format: "data == %@", data as CVarArg)
+        requisicao.predicate = predicate
+    
+        do {
+            let operacoes = try context.fetch(requisicao) as! [NSManagedObject]
+            if operacoes.count == 1 {
+                
+                for operacao in operacoes {
+                    print (operacao.value(forKey: "codigo")!)
+                    print (operacao.value(forKey: "data")!)
+                    print("Sucesso em encontrar o item a ser removido!")
+                    context.delete(operacao)
+                    
+                    do {
+                        try context.save()
+                        print ("Sucesso ao remover o item do CoreData")
+                    } catch  {
+                        print ("Falha ao tentar salvar após delete.")
+                    }
+                }
+            } else {
+                print("ALERTA! O SISTEMA ENCONTROU MAIS DE UM REGISTRO PARA REMOVER!!! BIZARRO!")
+            }
+        } catch {
+            print("Erro ao encontrar o registro para remover")
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -142,6 +180,24 @@ class DetalhesAtivos: UIViewController, UITableViewDataSource, UITableViewDelega
         cell.custoTotalLabel.text = "R$ "+String(format: "%.2f", listaDasOperacoes.custoOperacao + (listaDasOperacoes.precoUnitario * Float(listaDasOperacoes.quantidadeAcoes)))
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        dataOperacao = todasAsOperacoes[indexPath.row].dataOperacao
+        performSegue(withIdentifier: "editOperacao", sender: self)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if segue.identifier == "addStockFromDetails" {
+            let addStockVC = segue.destination as! addStockViewController
+            addStockVC.nomeDoAtivo = nomeDoAtivo
+            addStockVC.codigoDoAtivo = codigoDoAtivo
+        }
+        else if segue.identifier == "editOperacao" {
+            let editaStockVC = segue.destination as! EditaOperacaoViewController
+            editaStockVC.dataOperacao = dataOperacao
+        }
     }
     
 

@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		4CBDD42DE753F0C647B10B41 /* Pods_Apenas_Testando.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0473E21CD1E306C3A50BD97 /* Pods_Apenas_Testando.framework */; };
 		53006FC31FA67B3000CC7D84 /* Operacao.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53006FC21FA67B2F00CC7D84 /* Operacao.swift */; };
-		53006FC51FA67CC000CC7D84 /* ListaOperacoes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53006FC41FA67CC000CC7D84 /* ListaOperacoes.swift */; };
 		530776831FDCB5D6002F4620 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5307765F1FDCAF7E002F4620 /* Model.xcdatamodeld */; };
 		535450E21F93DF380051F60E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 535450E11F93DF380051F60E /* AppDelegate.swift */; };
 		535450E41F93DF380051F60E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 535450E31F93DF380051F60E /* ViewController.swift */; };
@@ -19,6 +18,7 @@
 		5357DD931FAE5FF100369048 /* DetalhesAtivos.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5357DD921FAE5FF100369048 /* DetalhesAtivos.swift */; };
 		5357DD971FAE6FC300369048 /* OperacoesDoAtivo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5357DD951FAE6FC300369048 /* OperacoesDoAtivo.swift */; };
 		5357DD981FAE6FC300369048 /* OperacoesDoAtivo.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5357DD961FAE6FC300369048 /* OperacoesDoAtivo.xib */; };
+		538A04D21FF8721B00C5FD26 /* EditaOperacaoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 538A04D11FF8721B00C5FD26 /* EditaOperacaoViewController.swift */; };
 		53A2932F1FE6DF5200A9F3FB /* ativos B3.plist in Resources */ = {isa = PBXBuildFile; fileRef = 53A2932E1FE6DF5200A9F3FB /* ativos B3.plist */; };
 		53A9457A1FACA63F00D8107D /* CateiraDeAcoes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53A945791FACA63F00D8107D /* CateiraDeAcoes.swift */; };
 		53FA088A1F9AB57900E109B6 /* StandardStockListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53FA08881F9AB57900E109B6 /* StandardStockListCell.swift */; };
@@ -28,7 +28,6 @@
 
 /* Begin PBXFileReference section */
 		53006FC21FA67B2F00CC7D84 /* Operacao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Operacao.swift; sourceTree = "<group>"; };
-		53006FC41FA67CC000CC7D84 /* ListaOperacoes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListaOperacoes.swift; sourceTree = "<group>"; };
 		5307765D1FDCAE12002F4620 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		530776601FDCAF7E002F4620 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		535450DE1F93DF380051F60E /* Apenas Testando.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Apenas Testando.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -41,6 +40,7 @@
 		5357DD921FAE5FF100369048 /* DetalhesAtivos.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetalhesAtivos.swift; sourceTree = "<group>"; };
 		5357DD951FAE6FC300369048 /* OperacoesDoAtivo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OperacoesDoAtivo.swift; sourceTree = "<group>"; };
 		5357DD961FAE6FC300369048 /* OperacoesDoAtivo.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OperacoesDoAtivo.xib; sourceTree = "<group>"; };
+		538A04D11FF8721B00C5FD26 /* EditaOperacaoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditaOperacaoViewController.swift; sourceTree = "<group>"; };
 		53A2932E1FE6DF5200A9F3FB /* ativos B3.plist */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = "ativos B3.plist"; sourceTree = "<group>"; };
 		53A945791FACA63F00D8107D /* CateiraDeAcoes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CateiraDeAcoes.swift; sourceTree = "<group>"; };
 		53FA08881F9AB57900E109B6 /* StandardStockListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandardStockListCell.swift; sourceTree = "<group>"; };
@@ -75,9 +75,10 @@
 		53006FC11FA67B1600CC7D84 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				5307765F1FDCAF7E002F4620 /* Model.xcdatamodeld */,
+				53A2932E1FE6DF5200A9F3FB /* ativos B3.plist */,
 				53006FC21FA67B2F00CC7D84 /* Operacao.swift */,
 				53A945791FACA63F00D8107D /* CateiraDeAcoes.swift */,
-				53006FC41FA67CC000CC7D84 /* ListaOperacoes.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -85,7 +86,6 @@
 		535450D51F93DF380051F60E = {
 			isa = PBXGroup;
 			children = (
-				5307765F1FDCAF7E002F4620 /* Model.xcdatamodeld */,
 				535450E01F93DF380051F60E /* Apenas Testando */,
 				535450DF1F93DF380051F60E /* Products */,
 				A0AA66889A80CF20165F83B1 /* Pods */,
@@ -104,15 +104,11 @@
 		535450E01F93DF380051F60E /* Apenas Testando */ = {
 			isa = PBXGroup;
 			children = (
+				535450E11F93DF380051F60E /* AppDelegate.swift */,
+				538A04D01FF8307200C5FD26 /* Controller */,
 				5357DD941FAE6F8D00369048 /* Views */,
 				53006FC11FA67B1600CC7D84 /* Model */,
-				535450E11F93DF380051F60E /* AppDelegate.swift */,
-				5357DD921FAE5FF100369048 /* DetalhesAtivos.swift */,
-				535450E31F93DF380051F60E /* ViewController.swift */,
-				535450E51F93DF380051F60E /* Main.storyboard */,
 				535450E81F93DF380051F60E /* Assets.xcassets */,
-				535450EA1F93DF380051F60E /* LaunchScreen.storyboard */,
-				53A2932E1FE6DF5200A9F3FB /* ativos B3.plist */,
 				535450ED1F93DF380051F60E /* Info.plist */,
 			);
 			path = "Apenas Testando";
@@ -121,13 +117,25 @@
 		5357DD941FAE6F8D00369048 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				53FA088C1F9AD18900E109B6 /* addStockViewController.swift */,
+				535450EA1F93DF380051F60E /* LaunchScreen.storyboard */,
+				535450E51F93DF380051F60E /* Main.storyboard */,
 				5357DD951FAE6FC300369048 /* OperacoesDoAtivo.swift */,
 				5357DD961FAE6FC300369048 /* OperacoesDoAtivo.xib */,
 				53FA08881F9AB57900E109B6 /* StandardStockListCell.swift */,
 				53FA08891F9AB57900E109B6 /* StandardStockListCell.xib */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		538A04D01FF8307200C5FD26 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				538A04D11FF8721B00C5FD26 /* EditaOperacaoViewController.swift */,
+				535450E31F93DF380051F60E /* ViewController.swift */,
+				5357DD921FAE5FF100369048 /* DetalhesAtivos.swift */,
+				53FA088C1F9AD18900E109B6 /* addStockViewController.swift */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 		A0AA66889A80CF20165F83B1 /* Pods */ = {
@@ -277,9 +285,9 @@
 			files = (
 				53A9457A1FACA63F00D8107D /* CateiraDeAcoes.swift in Sources */,
 				535450E41F93DF380051F60E /* ViewController.swift in Sources */,
-				53006FC51FA67CC000CC7D84 /* ListaOperacoes.swift in Sources */,
 				5357DD971FAE6FC300369048 /* OperacoesDoAtivo.swift in Sources */,
 				535450E21F93DF380051F60E /* AppDelegate.swift in Sources */,
+				538A04D21FF8721B00C5FD26 /* EditaOperacaoViewController.swift in Sources */,
 				53FA088A1F9AB57900E109B6 /* StandardStockListCell.swift in Sources */,
 				53006FC31FA67B3000CC7D84 /* Operacao.swift in Sources */,
 				530776831FDCB5D6002F4620 /* Model.xcdatamodeld in Sources */,

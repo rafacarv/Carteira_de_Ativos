@@ -39,18 +39,49 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yw7-5v-Z6T">
+                                <rect key="frame" x="-210" y="116" width="200" height="450"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oUd-cC-5H5">
+                                        <rect key="frame" x="8" y="15" width="152" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Dados Pessoais">
+                                            <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KCE-9u-gT3">
+                                        <rect key="frame" x="8" y="53" width="152" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Custos Operacionais">
+                                            <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="450" id="Mub-TJ-9rN"/>
+                                    <constraint firstAttribute="width" constant="200" id="o0H-OW-oCG"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.37055522200000002" green="0.37056469920000001" blue="0.37055957319999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="FH8-Il-8jV" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="0Mc-Nq-Vx4"/>
+                            <constraint firstItem="yw7-5v-Z6T" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="-210" id="CR2-zT-kdr"/>
                             <constraint firstItem="FH8-Il-8jV" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="J8g-ot-JKo"/>
                             <constraint firstItem="FH8-Il-8jV" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="SAb-v6-CiC"/>
+                            <constraint firstItem="yw7-5v-Z6T" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="TWd-g4-6Iw"/>
                             <constraint firstItem="FH8-Il-8jV" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="deb-QE-NR5"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" title="Gestão Ativa" id="2ly-EH-CwL">
                         <barButtonItem key="backBarButtonItem" title="Cancelar" id="fuy-K1-fi1"/>
+                        <barButtonItem key="leftBarButtonItem" systemItem="action" id="2pq-5U-6bv">
+                            <connections>
+                                <action selector="botaoMenuPressionado:" destination="BYZ-38-t0r" id="40n-th-uVr"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="RG2-5B-31l">
                             <connections>
                                 <segue destination="7iF-aa-qal" kind="show" identifier="addStock" id="QPV-vv-fad"/>
@@ -59,11 +90,13 @@
                     </navigationItem>
                     <connections>
                         <outlet property="acoesTableView" destination="FH8-Il-8jV" id="3JB-r2-5CL"/>
+                        <outlet property="leadingConstraintMenu" destination="CR2-zT-kdr" id="kOI-ZJ-XxE"/>
+                        <outlet property="menuView" destination="yw7-5v-Z6T" id="vUj-Xo-fgp"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="956" y="493"/>
+            <point key="canvasLocation" x="956" y="492.50374812593708"/>
         </scene>
         <!--Inserir Operação-->
         <scene sceneID="wzt-Wi-eo9">
@@ -234,7 +267,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mKQ-78-5cg" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="SN5-Qx-ciL" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1720.8" y="120.98950524737631"/>
+            <point key="canvasLocation" x="2500" y="125"/>
         </scene>
         <!--Operações-->
         <scene sceneID="sEq-Ak-bcg">
@@ -386,6 +419,7 @@
                             <constraint firstItem="pJ9-4j-uc9" firstAttribute="top" secondItem="3GX-PD-gGH" secondAttribute="top" id="Ha0-A7-8ag"/>
                             <constraint firstItem="Wrl-8l-Q5S" firstAttribute="bottom" secondItem="3GX-PD-gGH" secondAttribute="bottom" id="NCa-jI-p31"/>
                             <constraint firstItem="Wrl-8l-Q5S" firstAttribute="leading" secondItem="3GX-PD-gGH" secondAttribute="leading" id="QQY-1a-p7I"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="epR-cK-WJE" secondAttribute="trailing" constant="20" symbolic="YES" id="ZcX-VL-CCf"/>
                             <constraint firstItem="pJ9-4j-uc9" firstAttribute="leading" secondItem="3GX-PD-gGH" secondAttribute="leading" id="fZF-9c-vBL"/>
                             <constraint firstItem="Wrl-8l-Q5S" firstAttribute="trailing" secondItem="3GX-PD-gGH" secondAttribute="trailing" id="kcm-ed-pa1"/>
                             <constraint firstItem="Wrl-8l-Q5S" firstAttribute="top" secondItem="epR-cK-WJE" secondAttribute="bottom" constant="2" id="uFF-Pf-v0e"/>
@@ -393,6 +427,14 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="3GX-PD-gGH"/>
                     </view>
+                    <navigationItem key="navigationItem" title="Title" id="qt4-q0-o3Z">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="tCs-Oq-IeK">
+                            <connections>
+                                <action selector="addOperacao:" destination="FPO-fV-buR" id="cvU-RW-ePb"/>
+                                <segue destination="7iF-aa-qal" kind="show" identifier="addStockFromDetails" id="gSj-qh-0is"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
                         <outlet property="custoAquisicaoLabel" destination="YZ3-C6-bAG" id="deK-ut-dbl"/>
@@ -405,11 +447,173 @@
                         <outlet property="resultadoPercentualLabel" destination="fI6-ra-XOf" id="bOP-TM-0N5"/>
                         <outlet property="valorTotalLabel" destination="Rm1-0L-iQd" id="tWm-Iq-wmg"/>
                         <outlet property="vendaTotalLabel" destination="Hex-1T-yuM" id="i2o-IJ-kCb"/>
+                        <segue destination="pTc-JW-hsh" kind="show" identifier="editOperacao" id="SkA-4H-PRe"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="COs-za-X8k" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="FPO-fV-buR" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1720.8" y="808.24587706146929"/>
+        </scene>
+        <!--Edita Operacao View Controller-->
+        <scene sceneID="vlx-NB-Pxi">
+            <objects>
+                <viewController id="pTc-JW-hsh" customClass="EditaOperacaoViewController" customModule="Apenas_Testando" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="z9x-KS-Jcg">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Data" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rVi-Gk-LhK">
+                                <rect key="frame" x="16" y="211" width="36" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="GeezaPro" family="Geeza Pro" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="QBn-N6-6Zj">
+                                <rect key="frame" x="212" y="202" width="139" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Quantidade" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F30-nY-7FD">
+                                <rect key="frame" x="16" y="273" width="88" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="GeezaPro" family="Geeza Pro" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="XEl-cT-fFO">
+                                <rect key="frame" x="212" y="264" width="139" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" name="GeezaPro" family="Geeza Pro" pointSize="17"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Preço" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SCT-y5-D2e">
+                                <rect key="frame" x="16" y="311" width="45" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="GeezaPro" family="Geeza Pro" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Custos" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="krv-1p-eTU">
+                                <rect key="frame" x="16" y="351" width="88" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="GeezaPro" family="Geeza Pro" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="YUI-B3-eWg">
+                                <rect key="frame" x="212" y="302" width="139" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" name="GeezaPro" family="Geeza Pro" pointSize="17"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Corretagem" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z2H-VD-vCM">
+                                <rect key="frame" x="16" y="392" width="90" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="GeezaPro" family="Geeza Pro" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Q5J-xk-an7">
+                                <rect key="frame" x="212" y="383" width="139" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" name="GeezaPro" family="Geeza Pro" pointSize="17"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Emolumentos" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kVY-CS-dDv">
+                                <rect key="frame" x="16" y="502" width="104" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="GeezaPro" family="Geeza Pro" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KIv-QF-7sm">
+                                <rect key="frame" x="212" y="497" width="139" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" name="GeezaPro" family="Geeza Pro" pointSize="17"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="IR" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JHZ-hH-Ahv">
+                                <rect key="frame" x="16" y="544" width="17" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="GeezaPro" family="Geeza Pro" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Tn5-ap-xMg">
+                                <rect key="frame" x="212" y="535" width="139" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" name="GeezaPro" family="Geeza Pro" pointSize="17"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Outras" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FFc-Na-c4M">
+                                <rect key="frame" x="16" y="582" width="52" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="GeezaPro" family="Geeza Pro" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qBy-fk-mQb">
+                                <rect key="frame" x="212" y="573" width="139" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" name="GeezaPro" family="Geeza Pro" pointSize="17"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Taxa de Liquidação" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Koc-6Q-kp5">
+                                <rect key="frame" x="16" y="463" width="148" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="GeezaPro" family="Geeza Pro" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fcF-gA-ezT">
+                                <rect key="frame" x="212" y="459" width="139" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" name="GeezaPro" family="Geeza Pro" pointSize="17"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="ISS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="002-EM-BAV">
+                                <rect key="frame" x="16" y="430" width="28" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="GeezaPro" family="Geeza Pro" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tOS-UH-lIT">
+                                <rect key="frame" x="212" y="421" width="139" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" name="GeezaPro" family="Geeza Pro" pointSize="17"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="G1H-9y-opQ"/>
+                    </view>
+                    <connections>
+                        <outlet property="corretagemTextField" destination="Q5J-xk-an7" id="qRy-Zt-VJh"/>
+                        <outlet property="dataTextField" destination="QBn-N6-6Zj" id="lfq-44-3b6"/>
+                        <outlet property="emolumentosTextField" destination="KIv-QF-7sm" id="z6A-Cu-pKX"/>
+                        <outlet property="irTextField" destination="Tn5-ap-xMg" id="JX3-2a-7ez"/>
+                        <outlet property="issTextField" destination="tOS-UH-lIT" id="Fx4-P8-hAd"/>
+                        <outlet property="liquidacaoTextField" destination="fcF-gA-ezT" id="fQN-hP-hex"/>
+                        <outlet property="outrasTextField" destination="qBy-fk-mQb" id="nto-96-TMA"/>
+                        <outlet property="precoTextField" destination="YUI-B3-eWg" id="6wh-h9-kEy"/>
+                        <outlet property="quantidadeTextField" destination="XEl-cT-fFO" id="0on-at-JOA"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="OPd-kp-BdD" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2584.8000000000002" y="807.34632683658174"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Q0d-Xl-lZ6">
@@ -436,8 +640,11 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0kK-yq-dgh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="274" y="493"/>
+            <point key="canvasLocation" x="-447" y="493"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="QPV-vv-fad"/>
+    </inferredMetricsTieBreakers>
     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
 </document>

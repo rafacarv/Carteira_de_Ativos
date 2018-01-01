@@ -10,10 +10,6 @@ import UIKit
 import CoreData
 
 
-protocol AddStock {
-    func addStockToWallet (codigo: String, nome: String, qty: Int, preco: Float, oper: String, data: Date, custo: Float)
-}
-
 struct ativos {
     var Papel: String
     var Nome: String
@@ -31,13 +27,29 @@ class addStockViewController: UIViewController, UITableViewDelegate, UITableView
     @IBOutlet weak var selecionaAtivoView: UIView!
     @IBOutlet weak var searchBar: UISearchBar!
     
-    var delegate : AddStock?
+//    var delegate : AddStock?
     var searchActive : Bool = false
     var filteredData = [ativos]()
     var ativosArrayFinal = [ativos]()
     
+    var codigoDoAtivo: String = ""
+    var nomeDoAtivo: String = ""
+    
     override func viewWillAppear(_ animated: Bool) {
-         carregaAtivos()
+        
+        if codigoDoAtivo != "" {
+            selecionaAtivoView.isHidden = true
+            codigoLabel.text = codigoDoAtivo
+            nomeLabel.text = nomeDoAtivo
+        } else {
+        carregaAtivos()
+        }
+        
+        selecionaAtivoView.layer.cornerRadius = 10
+        
+        selecionaAtivoView.layer.shadowColor = UIColor.black.cgColor
+        selecionaAtivoView.layer.shadowOpacity = 1
+        selecionaAtivoView.layer.shadowRadius = 10
     }
     
     override func viewDidLoad() {
@@ -46,12 +58,6 @@ class addStockViewController: UIViewController, UITableViewDelegate, UITableView
         ativosTableView.delegate = self
         ativosTableView.dataSource = self
         
-        selecionaAtivoView.layer.cornerRadius = 3
-        
-        selecionaAtivoView.layer.shadowColor = UIColor.black.cgColor
-        selecionaAtivoView.layer.shadowOpacity = 1
-        selecionaAtivoView.layer.shadowOffset = CGSize.zero
-        selecionaAtivoView.layer.shadowRadius = 10
     }
     
     func carregaAtivos () {
@@ -119,17 +125,52 @@ class addStockViewController: UIViewController, UITableViewDelegate, UITableView
             let formatter = NumberFormatter()
             formatter.decimalSeparator = ","
             
-            let p = formatter.number(from: precoTextField.text!)
+           
+            if let campoTexto = precoTextField.text {
             
-            if let pr = p?.floatValue {
-                preco = pr
-            } else {
-                print("Preco not parseable")
+                if let p = formatter.number(from: campoTexto) {
+                    preco = p.floatValue
+                } else {
+                    print("Preco not parseable")
+                }
             }
             
             let custoOperacao = calculaCustos(qty: quantidade, preco: preco)
+
+//  Trazendo o salvamento da operacao pra este codigo
+//            delegate?.addStockToWallet(codigo: codigoLabel.text!, nome: nomeLabel.text!, qty: quantidade, preco: preco, oper: selecaoOperacao, data: dataOperacao.date, custo: custoOperacao)
             
-            delegate?.addStockToWallet(codigo: codigoLabel.text!, nome: nomeLabel.text!, qty: quantidade, preco: preco, oper: selecaoOperacao, data: dataOperacao.date, custo: custoOperacao)
+
+            // Mark:- Salvamento com persistencia
+            //
+            // Primeiro instacia appDelegate para acessar os metodos da persistencia
+            // Depois cria o "contexto", ataves do metodo do appDelegate
+            
+            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+            let context = appDelegate.persistentContainer.viewContext
+            
+            // Agora cria a requisição de inserir os objetos na entidade "Operações do modelo
+            //
+            
+            let operacoes = NSEntityDescription.insertNewObject(forEntityName: "Operacoes", into: context)
+            
+            // Insere os valores para cada chave
+            //
+            operacoes.setValue(codigoLabel.text, forKey: "codigo")
+            operacoes.setValue(quantidade, forKey: "quantidade")
+            operacoes.setValue(preco, forKey: "preco")
+            operacoes.setValue(selecaoOperacao, forKey: "operacao")
+            operacoes.setValue(dataOperacao.date, forKey: "data")
+            operacoes.setValue(nomeLabel.text, forKey: "nome")
+            operacoes.setValue(custoOperacao, forKey: "custo")
+            
+            // Salva o contexto
+            do {
+                try context.save()
+                print("Sucesso ao salvar os itens no Model.")
+            } catch  {
+                print("Falha ao salvar dados.")
+            }
             
             performSegue(withIdentifier: "unwindToViewController", sender: self)
         }
