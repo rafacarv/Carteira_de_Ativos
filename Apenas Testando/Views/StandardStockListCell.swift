@@ -16,4 +16,7 @@ class StandardStockListCell: UITableViewCell {
     @IBOutlet weak var precoMedioLabel: UILabel!
     @IBOutlet weak var precoAtualLabel: UILabel!
     
+    @IBOutlet weak var acoesView: UIView!
+    
+    
 }

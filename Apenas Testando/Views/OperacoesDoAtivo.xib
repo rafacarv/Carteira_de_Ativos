@@ -16,7 +16,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="99" id="KGk-i7-Jjw" customClass="OperacoesDoAtivo" customModule="Apenas_Testando" customModuleProvider="target">
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="KGk-i7-Jjw" customClass="OperacoesDoAtivo" customModule="Apenas_Testando" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="320" height="102"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
@@ -24,106 +24,128 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eDE-lc-Zvc">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="101.5"/>
+                        <rect key="frame" x="5" y="5" width="310" height="92"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Preço:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kfL-aL-D2W">
-                                <rect key="frame" x="160" y="31" width="50" height="17.5"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ids-I3-Fmw">
+                                <rect key="frame" x="5" y="5" width="100" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="100" id="cRT-JT-JQH"/>
+                                    <constraint firstAttribute="height" constant="20" id="uJo-zx-872"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="GeezaPro" family="Geeza Pro" pointSize="16"/>
+                                <color key="textColor" red="0.37055522200000002" green="0.37056469920000001" blue="0.37055957319999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="piZ-nu-yFc">
+                                <rect key="frame" x="85" y="27" width="35" height="20"/>
                                 <fontDescription key="fontDescription" name="GeezaPro" family="Geeza Pro" pointSize="14"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="textColor" red="0.37055522200000002" green="0.37056469920000001" blue="0.37055957319999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Quantidade:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qRF-7y-1Gl">
+                                <rect key="frame" x="5" y="27" width="77" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="77" id="dEp-lO-uo0"/>
+                                    <constraint firstAttribute="height" constant="20" id="yO1-0q-C1n"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="GeezaPro" family="Geeza Pro" pointSize="14"/>
+                                <color key="textColor" red="0.37055522200000002" green="0.37056469920000001" blue="0.37055957319999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fmG-dC-j0m">
+                                <rect key="frame" x="53" y="49" width="35" height="18"/>
+                                <fontDescription key="fontDescription" name="GeezaPro" family="Geeza Pro" pointSize="14"/>
+                                <color key="textColor" red="0.37055522200000002" green="0.37056469920000001" blue="0.37055957319999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Compra" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BPs-h0-m2y">
+                                <rect key="frame" x="240" y="5" width="65" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="65" id="OzE-qB-inD"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="GeezaPro" family="Geeza Pro" pointSize="17"/>
+                                <color key="textColor" red="0.37055522200000002" green="0.37056469920000001" blue="0.37055957319999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lo7-MT-bZI">
+                                <rect key="frame" x="48" y="69" width="35" height="18"/>
+                                <fontDescription key="fontDescription" name="GeezaPro" family="Geeza Pro" pointSize="14"/>
+                                <color key="textColor" red="0.37055522200000002" green="0.37056469920000001" blue="0.37055957319999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="shK-2t-qpy">
+                                <rect key="frame" x="205" y="69" width="100" height="18"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="100" id="0M3-Cc-nvS"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="GeezaPro" family="Geeza Pro" pointSize="14"/>
+                                <color key="textColor" red="0.37055522200000002" green="0.37056469920000001" blue="0.37055957319999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Custo:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uYQ-Wi-8UC">
+                                <rect key="frame" x="5" y="69" width="41" height="18"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="41" id="rfR-aW-HhL"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="GeezaPro" family="Geeza Pro" pointSize="14"/>
+                                <color key="textColor" red="0.37055522200000002" green="0.37056469920000001" blue="0.37055957319999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Preço:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kfL-aL-D2W">
+                                <rect key="frame" x="5" y="49" width="45" height="18"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="45" id="zwm-9l-z74"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="GeezaPro" family="Geeza Pro" pointSize="14"/>
+                                <color key="textColor" red="0.37055522200000002" green="0.37056469920000001" blue="0.37055957319999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i8C-NP-6bV">
+                                <rect key="frame" x="205" y="46" width="34" height="18"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="34" id="GY7-Yy-TC5"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="GeezaPro" family="Geeza Pro" pointSize="14"/>
+                                <color key="textColor" red="0.37055522200000002" green="0.37056469920000001" blue="0.37055957319999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" red="0.26051741839999998" green="0.2605243921" blue="0.260520637" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.92143100499999997" green="0.92145264149999995" blue="0.92144101860000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="shK-2t-qpy" secondAttribute="trailing" constant="5" id="2U7-vw-uEG"/>
+                            <constraint firstItem="kfL-aL-D2W" firstAttribute="top" secondItem="qRF-7y-1Gl" secondAttribute="bottom" constant="2" id="3LC-2G-AjL"/>
+                            <constraint firstItem="uYQ-Wi-8UC" firstAttribute="leading" secondItem="eDE-lc-Zvc" secondAttribute="leading" constant="5" id="4Rj-PZ-gIr"/>
+                            <constraint firstItem="i8C-NP-6bV" firstAttribute="leading" secondItem="shK-2t-qpy" secondAttribute="leading" id="6nq-5g-vix"/>
+                            <constraint firstItem="Ids-I3-Fmw" firstAttribute="top" secondItem="eDE-lc-Zvc" secondAttribute="top" constant="5" id="8L2-BK-hZ8"/>
+                            <constraint firstItem="fmG-dC-j0m" firstAttribute="centerY" secondItem="kfL-aL-D2W" secondAttribute="centerY" id="Cy8-Ih-pBA"/>
+                            <constraint firstAttribute="bottom" secondItem="uYQ-Wi-8UC" secondAttribute="bottom" constant="5" id="D6k-GJ-DGI"/>
+                            <constraint firstItem="fmG-dC-j0m" firstAttribute="leading" secondItem="kfL-aL-D2W" secondAttribute="trailing" constant="3" id="Ek8-tJ-lS7"/>
+                            <constraint firstItem="BPs-h0-m2y" firstAttribute="top" secondItem="eDE-lc-Zvc" secondAttribute="top" constant="5" id="FbY-2H-gAU"/>
+                            <constraint firstItem="Lo7-MT-bZI" firstAttribute="centerY" secondItem="uYQ-Wi-8UC" secondAttribute="centerY" id="JKa-Sy-Rhh"/>
+                            <constraint firstItem="qRF-7y-1Gl" firstAttribute="top" secondItem="Ids-I3-Fmw" secondAttribute="bottom" constant="2" id="N9b-cB-vHr"/>
+                            <constraint firstItem="piZ-nu-yFc" firstAttribute="centerY" secondItem="qRF-7y-1Gl" secondAttribute="centerY" id="QQL-CK-Tsj"/>
+                            <constraint firstItem="kfL-aL-D2W" firstAttribute="leading" secondItem="eDE-lc-Zvc" secondAttribute="leading" constant="5" id="S6O-MB-ja8"/>
+                            <constraint firstAttribute="bottom" secondItem="shK-2t-qpy" secondAttribute="bottom" constant="5" id="Upw-Vg-BfI"/>
+                            <constraint firstItem="shK-2t-qpy" firstAttribute="top" secondItem="i8C-NP-6bV" secondAttribute="bottom" constant="5" id="ZMm-xJ-vRU"/>
+                            <constraint firstItem="piZ-nu-yFc" firstAttribute="leading" secondItem="qRF-7y-1Gl" secondAttribute="trailing" constant="3" id="eTk-9Q-ht6"/>
+                            <constraint firstAttribute="trailing" secondItem="BPs-h0-m2y" secondAttribute="trailing" constant="5" id="f9y-TF-muy"/>
+                            <constraint firstItem="qRF-7y-1Gl" firstAttribute="baseline" secondItem="piZ-nu-yFc" secondAttribute="baseline" id="fAE-hr-FSG"/>
+                            <constraint firstItem="qRF-7y-1Gl" firstAttribute="leading" secondItem="eDE-lc-Zvc" secondAttribute="leading" constant="5" id="jLD-yt-sfx"/>
+                            <constraint firstItem="Lo7-MT-bZI" firstAttribute="leading" secondItem="uYQ-Wi-8UC" secondAttribute="trailing" constant="2" id="mMe-8h-B5D"/>
+                            <constraint firstItem="uYQ-Wi-8UC" firstAttribute="top" secondItem="kfL-aL-D2W" secondAttribute="bottom" constant="2" id="n2p-i5-Tvh"/>
+                            <constraint firstItem="Ids-I3-Fmw" firstAttribute="leading" secondItem="eDE-lc-Zvc" secondAttribute="leading" constant="5" id="qZH-wR-dYV"/>
+                        </constraints>
                     </view>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ids-I3-Fmw">
-                        <rect key="frame" x="10" y="5" width="100" height="20"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="100" id="DI3-cJ-ydR"/>
-                        </constraints>
-                        <fontDescription key="fontDescription" name="GeezaPro" family="Geeza Pro" pointSize="16"/>
-                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="piZ-nu-yFc">
-                        <rect key="frame" x="91.5" y="30" width="34.5" height="20"/>
-                        <fontDescription key="fontDescription" name="GeezaPro" family="Geeza Pro" pointSize="14"/>
-                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Quantidade:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qRF-7y-1Gl">
-                        <rect key="frame" x="10" y="30" width="76.5" height="20"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="20" id="WNP-tv-8N1"/>
-                        </constraints>
-                        <fontDescription key="fontDescription" name="GeezaPro" family="Geeza Pro" pointSize="14"/>
-                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Total:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i8C-NP-6bV">
-                        <rect key="frame" x="177.5" y="76.5" width="33.5" height="18"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <fontDescription key="fontDescription" name="GeezaPro" family="Geeza Pro" pointSize="14"/>
-                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fmG-dC-j0m">
-                        <rect key="frame" x="217" y="30" width="93" height="20"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <fontDescription key="fontDescription" name="GeezaPro" family="Geeza Pro" pointSize="14"/>
-                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Compra" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BPs-h0-m2y">
-                        <rect key="frame" x="245" y="5" width="65" height="20"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="19.5" id="YrY-7G-o8Z"/>
-                            <constraint firstAttribute="width" constant="65" id="m7d-0v-iM1"/>
-                        </constraints>
-                        <fontDescription key="fontDescription" name="GeezaPro" family="Geeza Pro" pointSize="17"/>
-                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lo7-MT-bZI">
-                        <rect key="frame" x="217" y="53" width="93" height="20"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <fontDescription key="fontDescription" name="GeezaPro" family="Geeza Pro" pointSize="14"/>
-                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="shK-2t-qpy">
-                        <rect key="frame" x="217" y="76" width="93" height="18"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <fontDescription key="fontDescription" name="GeezaPro" family="Geeza Pro" pointSize="14"/>
-                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Custo:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uYQ-Wi-8UC">
-                        <rect key="frame" x="170.5" y="53" width="40.5" height="19"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <fontDescription key="fontDescription" name="GeezaPro" family="Geeza Pro" pointSize="14"/>
-                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <nil key="highlightedColor"/>
-                    </label>
                 </subviews>
-                <color key="backgroundColor" red="0.26051741839999998" green="0.2605243921" blue="0.260520637" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
-                    <constraint firstItem="piZ-nu-yFc" firstAttribute="leading" secondItem="qRF-7y-1Gl" secondAttribute="trailing" constant="5" id="B8b-Gj-ds4"/>
-                    <constraint firstAttribute="bottom" secondItem="qRF-7y-1Gl" secondAttribute="bottom" constant="51.5" id="Neb-5v-8ml"/>
-                    <constraint firstItem="eDE-lc-Zvc" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="OM5-fc-1Ag"/>
-                    <constraint firstItem="qRF-7y-1Gl" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="anl-Zl-0dY"/>
-                    <constraint firstItem="qRF-7y-1Gl" firstAttribute="top" secondItem="Ids-I3-Fmw" secondAttribute="bottom" constant="5" id="cyh-5z-vou"/>
-                    <constraint firstItem="Ids-I3-Fmw" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="gbT-rA-NIx"/>
-                    <constraint firstItem="eDE-lc-Zvc" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="hcL-sh-6qN"/>
-                    <constraint firstAttribute="bottom" secondItem="eDE-lc-Zvc" secondAttribute="bottom" id="idG-mt-ECp"/>
-                    <constraint firstAttribute="trailing" secondItem="BPs-h0-m2y" secondAttribute="trailing" constant="10" id="j8h-SJ-UbY"/>
-                    <constraint firstItem="BPs-h0-m2y" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="kFh-HZ-gm9"/>
-                    <constraint firstItem="piZ-nu-yFc" firstAttribute="top" secondItem="Ids-I3-Fmw" secondAttribute="bottom" constant="5" id="qjA-bD-2wh"/>
-                    <constraint firstAttribute="trailing" secondItem="eDE-lc-Zvc" secondAttribute="trailing" id="uM3-LQ-lpp"/>
-                    <constraint firstItem="piZ-nu-yFc" firstAttribute="centerY" secondItem="qRF-7y-1Gl" secondAttribute="centerY" id="uTn-gX-QD5"/>
-                    <constraint firstItem="Ids-I3-Fmw" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="ysf-3z-DeY"/>
+                    <constraint firstItem="eDE-lc-Zvc" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="5" id="PKp-TF-1P0"/>
+                    <constraint firstAttribute="bottom" secondItem="eDE-lc-Zvc" secondAttribute="bottom" constant="5" id="djS-V0-2K5"/>
+                    <constraint firstAttribute="trailing" secondItem="eDE-lc-Zvc" secondAttribute="trailing" constant="5" id="q3P-h3-kpv"/>
+                    <constraint firstItem="eDE-lc-Zvc" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="zFh-dA-YFi"/>
                 </constraints>
             </tableViewCellContentView>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="compraVendaLabel" destination="BPs-h0-m2y" id="VXl-bS-iiQ"/>
@@ -131,6 +153,7 @@
                 <outlet property="custoTotalLabel" destination="shK-2t-qpy" id="2eH-2L-AlZ"/>
                 <outlet property="dataOperacaoLabel" destination="Ids-I3-Fmw" id="VuC-aO-MC4"/>
                 <outlet property="fundoCelula" destination="eDE-lc-Zvc" id="0VF-zN-alQ"/>
+                <outlet property="fundoDaCelula" destination="eDE-lc-Zvc" id="dIZ-IV-MnZ"/>
                 <outlet property="precoAcaoLabel" destination="fmG-dC-j0m" id="pzW-Qk-8Pp"/>
                 <outlet property="quantidadeOperacaoLabel" destination="piZ-nu-yFc" id="UR0-n9-4wn"/>
             </connections>

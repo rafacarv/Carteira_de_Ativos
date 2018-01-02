@@ -18,5 +18,6 @@ class OperacoesDoAtivo: UITableViewCell {
     @IBOutlet weak var custoTotalLabel: UILabel!
     @IBOutlet weak var fundoCelula: UIView!
 
- 
+    @IBOutlet weak var fundoDaCelula: UIView!
+    
 }

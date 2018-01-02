@@ -41,9 +41,9 @@ class DetalhesAtivos: UIViewController, UITableViewDataSource, UITableViewDelega
     
     var dataOperacao = Date()
         
-    override func viewWillAppear(_ animated: Bool) {
-        listaOperacoes.becomeFirstResponder()
-    }
+//    override func viewWillAppear(_ animated: Bool) {
+//        listaOperacoes.becomeFirstResponder()
+//    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,9 +53,12 @@ class DetalhesAtivos: UIViewController, UITableViewDataSource, UITableViewDelega
         listaOperacoes.dataSource = self
         listaOperacoes.delegate = self
         listaOperacoes.register(UINib(nibName: "OperacoesDoAtivo", bundle: nil), forCellReuseIdentifier: "standardCellOperacoes")
+//
+//        listaOperacoes.estimatedRowHeight = 85
+//        listaOperacoes.rowHeight = UITableViewAutomaticDimension
         
-        listaOperacoes.estimatedRowHeight = 85
-        listaOperacoes.rowHeight = UITableViewAutomaticDimension
+        let backgroundGradientColors:[UIColor] = [UIColor.init(hexString: "#3d3d3d")!,UIColor.init(hexString: "#6FDBFD")!]
+        view.backgroundColor = UIColor.init(gradientStyle: .topToBottom, withFrame: view.frame, andColors: backgroundGradientColors)
         
         precoVenda = precoDeMercado
         let custoVenda = calculaCustos(qty: Float(quantidadeTotal), preco: precoVenda)
@@ -164,12 +167,12 @@ class DetalhesAtivos: UIViewController, UITableViewDataSource, UITableViewDelega
         
         if listaDasOperacoes.tipoOperacao == "C"{
             cell.compraVendaLabel.text = "Compra"
-            cell.compraVendaLabel.textColor = UIColor.flatGreen()
+            cell.compraVendaLabel.textColor = UIColor.flatGreen
             //cell.fundoCelula.backgroundColor = UIColor.flatForestGreenColorDark()
         }
         else {
             cell.compraVendaLabel.text = "Venda"
-            cell.compraVendaLabel.textColor = UIColor.flatOrange()
+            cell.compraVendaLabel.textColor = UIColor.flatOrange
             //cell.fundoCelula.backgroundColor = UIColor.flatOrangeColorDark()
         }
         
@@ -178,6 +181,9 @@ class DetalhesAtivos: UIViewController, UITableViewDataSource, UITableViewDelega
         cell.precoAcaoLabel.text = "R$ "+String(format: "%.2f", listaDasOperacoes.precoUnitario)
         cell.custoOperacaoLabel.text = "R$ "+String(format: "%.2f", listaDasOperacoes.custoOperacao)
         cell.custoTotalLabel.text = "R$ "+String(format: "%.2f", listaDasOperacoes.custoOperacao + (listaDasOperacoes.precoUnitario * Float(listaDasOperacoes.quantidadeAcoes)))
+        
+        cell.fundoCelula.layer.cornerRadius = 2
+        cell.fundoCelula.layer.masksToBounds = true
         
         return cell
     }

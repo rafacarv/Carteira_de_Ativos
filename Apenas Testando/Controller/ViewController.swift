@@ -35,6 +35,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     @IBOutlet weak var acoesTableView: UITableView!
     @IBOutlet weak var leadingConstraintMenu: NSLayoutConstraint!
     @IBOutlet weak var menuView: UIView!
+    @IBOutlet weak var leadingConstraintMainView: NSLayoutConstraint!
+    @IBOutlet weak var trailingConstraintMainView: NSLayoutConstraint!
     
     @IBAction func unwindToViewController (segue: UIStoryboardSegue){
         
@@ -46,14 +48,16 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         acoesTableView.delegate = self
         acoesTableView.dataSource = self
         acoesTableView.register(UINib(nibName: "StandardStockListCell", bundle: nil), forCellReuseIdentifier: "standardCell")
+
         
-        let backgroundImage = UIImage(named: "puppy-dark-love-wallpaper")
-        let imageView = UIImageView(image: backgroundImage)
-        acoesTableView.backgroundView = imageView
+        let backgroundGradientColors:[UIColor] = [UIColor.init(hexString: "#3d3d3d")!,UIColor.init(hexString: "#6FDBFD")!]
+        view.backgroundColor = UIColor.init(gradientStyle: .topToBottom, withFrame: view.frame, andColors: backgroundGradientColors)
+        
+//        self.navigationController?.hidesNavigationBarHairline = true
         
         menuView.layer.shadowOpacity = 1
-        menuView.layer.shadowRadius = 5
-        menuView.layer.cornerRadius = 10
+        menuView.layer.shadowRadius = 3
+        menuView.layer.cornerRadius = 2
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -66,11 +70,16 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         if !menuAberto {
             leadingConstraintMenu.constant = 0
-            UIView.animate(withDuration: 0.3, animations: {
+            
+//            let tamanhoMainView = trailingConstraintMainView.constant - leadingConstraintMainView.constant
+//            leadingConstraintMainView.constant = 210
+//            trailingConstraintMainView.constant += tamanhoMainView
+            UIView.animate(withDuration: 0.4, animations: {
                 self.view.layoutIfNeeded()
             })
         } else {
             leadingConstraintMenu.constant = -210
+//            leadingConstraintMainView.constant = 0
             
             UIView.animate(withDuration: 0.3, animations: {
                 self.view.layoutIfNeeded()
@@ -185,7 +194,12 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         cell.nomeTextField.text = informacaoCompletaAcao.nomeAcao
         cell.quantidadeTotal.text = String(informacaoCompletaAcao.quantidadeTotal)
         cell.precoMedioLabel.text = "R$ "+String(format: "%.2f", informacaoCompletaAcao.precoMedio)
-  
+        
+        cell.acoesView.layer.cornerRadius = 8
+//        cell.acoesView.layer.shadowRadius = 4
+//        cell.acoesView.layer.shadowOpacity = 1
+        cell.acoesView.layer.masksToBounds = true
+        
         buscaCotacao(ativo: informacaoCompletaAcao.codigoAcao, for: cell, indexPath: indexPath)
         
         return cell

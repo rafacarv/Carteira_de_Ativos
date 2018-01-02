@@ -27,7 +27,6 @@ class addStockViewController: UIViewController, UITableViewDelegate, UITableView
     @IBOutlet weak var selecionaAtivoView: UIView!
     @IBOutlet weak var searchBar: UISearchBar!
     
-//    var delegate : AddStock?
     var searchActive : Bool = false
     var filteredData = [ativos]()
     var ativosArrayFinal = [ativos]()
@@ -45,11 +44,11 @@ class addStockViewController: UIViewController, UITableViewDelegate, UITableView
         carregaAtivos()
         }
         
-        selecionaAtivoView.layer.cornerRadius = 10
-        
+        selecionaAtivoView.layer.cornerRadius = 2
         selecionaAtivoView.layer.shadowColor = UIColor.black.cgColor
         selecionaAtivoView.layer.shadowOpacity = 1
-        selecionaAtivoView.layer.shadowRadius = 10
+        selecionaAtivoView.layer.shadowRadius = 3
+        selecionaAtivoView.layer.masksToBounds = true
     }
     
     override func viewDidLoad() {
@@ -58,13 +57,16 @@ class addStockViewController: UIViewController, UITableViewDelegate, UITableView
         ativosTableView.delegate = self
         ativosTableView.dataSource = self
         
+        let backgroundGradientColors:[UIColor] = [UIColor.init(hexString: "#3d3d3d")!,UIColor.init(hexString: "#6FDBFD")!]
+        view.backgroundColor = UIColor.init(gradientStyle: .topToBottom, withFrame: view.frame, andColors: backgroundGradientColors)
+        
     }
     
     func carregaAtivos () {
         let path = Bundle.main.path(forResource: "ativos B3", ofType: "plist")
         let ativosArray = NSArray(contentsOfFile: path!) as! [[String:String]]
         
-        ativosArrayFinal = ativosArray.map{ativos.init(Papel: $0["Papel"] as! String, Nome: $0["Nome Comercial"] as! String, Razão: $0["Razão Social"] as! String)}
+        ativosArrayFinal = ativosArray.map{ativos.init(Papel: $0["Papel"]!, Nome: $0["Nome Comercial"]!, Razão: $0["Razão Social"]!)}
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
