@@ -10,6 +10,7 @@
 		4CBDD42DE753F0C647B10B41 /* Pods_Apenas_Testando.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0473E21CD1E306C3A50BD97 /* Pods_Apenas_Testando.framework */; };
 		53006FC31FA67B3000CC7D84 /* Operacao.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53006FC21FA67B2F00CC7D84 /* Operacao.swift */; };
 		530776831FDCB5D6002F4620 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5307765F1FDCAF7E002F4620 /* Model.xcdatamodeld */; };
+		530EA41220BB1F8A005C8A5D /* ConfiguracoesTaxasViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 530EA41120BB1F8A005C8A5D /* ConfiguracoesTaxasViewController.swift */; };
 		535450E21F93DF380051F60E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 535450E11F93DF380051F60E /* AppDelegate.swift */; };
 		535450E41F93DF380051F60E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 535450E31F93DF380051F60E /* ViewController.swift */; };
 		535450E71F93DF380051F60E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 535450E51F93DF380051F60E /* Main.storyboard */; };
@@ -30,6 +31,7 @@
 		53006FC21FA67B2F00CC7D84 /* Operacao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Operacao.swift; sourceTree = "<group>"; };
 		5307765D1FDCAE12002F4620 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		530776601FDCAF7E002F4620 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		530EA41120BB1F8A005C8A5D /* ConfiguracoesTaxasViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfiguracoesTaxasViewController.swift; sourceTree = "<group>"; };
 		535450DE1F93DF380051F60E /* Apenas Testando.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Apenas Testando.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		535450E11F93DF380051F60E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		535450E31F93DF380051F60E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -130,6 +132,7 @@
 		538A04D01FF8307200C5FD26 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				530EA41120BB1F8A005C8A5D /* ConfiguracoesTaxasViewController.swift */,
 				538A04D11FF8721B00C5FD26 /* EditaOperacaoViewController.swift */,
 				535450E31F93DF380051F60E /* ViewController.swift */,
 				5357DD921FAE5FF100369048 /* DetalhesAtivos.swift */,
@@ -159,7 +162,6 @@
 				535450DB1F93DF380051F60E /* Frameworks */,
 				535450DC1F93DF380051F60E /* Resources */,
 				0433774C3C0BC72FD77EC951 /* [CP] Embed Pods Frameworks */,
-				5FC44E4BCA934E56D9A4AA56 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -177,7 +179,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0900;
-				LastUpgradeCheck = 0900;
+				LastUpgradeCheck = 0930;
 				ORGANIZATIONNAME = "Rafael C F Leite";
 				TargetAttributes = {
 					535450DD1F93DF380051F60E = {
@@ -230,12 +232,14 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-Apenas Testando/Pods-Apenas Testando-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/ChameleonFramework/ChameleonFramework.framework",
+				"${BUILT_PRODUCTS_DIR}/JBDatePicker/JBDatePicker.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ChameleonFramework.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JBDatePicker.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -261,21 +265,6 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		5FC44E4BCA934E56D9A4AA56 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Apenas Testando/Pods-Apenas Testando-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -290,6 +279,7 @@
 				538A04D21FF8721B00C5FD26 /* EditaOperacaoViewController.swift in Sources */,
 				53FA088A1F9AB57900E109B6 /* StandardStockListCell.swift in Sources */,
 				53006FC31FA67B3000CC7D84 /* Operacao.swift in Sources */,
+				530EA41220BB1F8A005C8A5D /* ConfiguracoesTaxasViewController.swift in Sources */,
 				530776831FDCB5D6002F4620 /* Model.xcdatamodeld in Sources */,
 				5357DD931FAE5FF100369048 /* DetalhesAtivos.swift in Sources */,
 				53FA088D1F9AD18900E109B6 /* addStockViewController.swift in Sources */,
@@ -332,6 +322,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -339,6 +330,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -389,6 +381,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -396,6 +389,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;

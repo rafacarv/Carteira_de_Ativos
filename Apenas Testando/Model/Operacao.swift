@@ -15,15 +15,23 @@ class Operacao {
     let tipoOperacao : String
     let dataOperacao : Date
     let nomeAtivo : String
-    let custoOperacao : Float
+    let custoCorretagem : Float
+    let custoLiquidacao : Float
+    let custoEmolumento: Float
+    let custoISS : Float
+    let custoOutras : Float
     
-    init (cod: String, qty: Int, preco: Float, operacao: String, data: Date, nome: String, custo: Float){
+    init (cod: String, qty: Int, preco: Float, operacao: String, data: Date, nome: String, corretagem : Float, liquidacao : Float, emolumento: Float, ISS : Float, outras : Float){
         codigoAcao = cod
         quantidadeAcoes = qty
         precoUnitario = preco
         tipoOperacao = operacao
         dataOperacao = data
         nomeAtivo = nome
-        custoOperacao = custo
+        custoCorretagem = corretagem
+        custoLiquidacao = liquidacao
+        custoEmolumento = emolumento
+        custoISS = ISS
+        custoOutras = outras
     }
 }

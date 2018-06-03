@@ -10,6 +10,7 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 import CoreData
+//import ChameleonFramework
 
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -31,7 +32,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     var menuAberto = false
     
-    
     @IBOutlet weak var acoesTableView: UITableView!
     @IBOutlet weak var leadingConstraintMenu: NSLayoutConstraint!
     @IBOutlet weak var menuView: UIView!
@@ -44,19 +44,15 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     override func viewDidLoad() {
         super.viewDidLoad()
-      
+        
         acoesTableView.delegate = self
         acoesTableView.dataSource = self
         acoesTableView.register(UINib(nibName: "StandardStockListCell", bundle: nil), forCellReuseIdentifier: "standardCell")
-
         
-        let backgroundGradientColors:[UIColor] = [UIColor.init(hexString: "#3d3d3d")!,UIColor.init(hexString: "#6FDBFD")!]
-        view.backgroundColor = UIColor.init(gradientStyle: .topToBottom, withFrame: view.frame, andColors: backgroundGradientColors)
-        
-//        self.navigationController?.hidesNavigationBarHairline = true
+        self.navigationController?.hidesNavigationBarHairline = true
         
         menuView.layer.shadowOpacity = 1
-        menuView.layer.shadowRadius = 3
+        menuView.layer.shadowRadius = 4
         menuView.layer.cornerRadius = 2
     }
     
@@ -64,22 +60,17 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         carregaCoreData()
         consolidaAcoes()
         acoesTableView.reloadData()
+        leadingConstraintMenu.constant = -210
     }
-
+    
     @IBAction func botaoMenuPressionado(_ sender: UIBarButtonItem) {
-        
         if !menuAberto {
             leadingConstraintMenu.constant = 0
-            
-//            let tamanhoMainView = trailingConstraintMainView.constant - leadingConstraintMainView.constant
-//            leadingConstraintMainView.constant = 210
-//            trailingConstraintMainView.constant += tamanhoMainView
-            UIView.animate(withDuration: 0.4, animations: {
+            UIView.animate(withDuration: 0.3, animations: {
                 self.view.layoutIfNeeded()
             })
         } else {
             leadingConstraintMenu.constant = -210
-//            leadingConstraintMainView.constant = 0
             
             UIView.animate(withDuration: 0.3, animations: {
                 self.view.layoutIfNeeded()
@@ -87,6 +78,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         }
         menuAberto = !menuAberto
     }
+    
     
     //
     //MARK: - Carrega base de dados
@@ -97,13 +89,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         let context = appDelegate.persistentContainer.viewContext
-        
         let requisicao = NSFetchRequest<NSFetchRequestResult>(entityName: "Operacoes")
         
         do {
-            
             let operacoes = try context.fetch(requisicao)
-            
             if operacoes.count > 0 {
                 
                 for oper in operacoes as! [NSManagedObject] {
@@ -114,9 +103,13 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                     let operacao = oper.value(forKey: "operacao") as! String
                     let data = oper.value(forKey: "data") as! Date
                     let nome = oper.value(forKey: "nome") as! String
-                    let custo = oper.value(forKey: "custo") as! Float
+                    let corretagem = oper.value(forKey: "custoCorretagem") as! Float
+                    let liquidacao = oper.value(forKey: "custoLiquidacao") as! Float
+                    let emolumento = oper.value(forKey: "custoEmolumento") as! Float
+                    let ISS = oper.value(forKey: "custoISS") as! Float
+                    let outras = oper.value(forKey: "custoOutras") as! Float
                     
-                    listaOperacoes.append(Operacao(cod: cod, qty: qty, preco: preco, operacao: operacao, data: data, nome: nome, custo: custo))
+                    listaOperacoes.append(Operacao(cod: cod, qty: qty, preco: preco, operacao: operacao, data: data, nome: nome, corretagem: corretagem, liquidacao: liquidacao, emolumento: emolumento, ISS: ISS, outras: outras))
                 }
             } else {
                 print("O Modelo esta vazio!")
@@ -148,25 +141,25 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             
             for operacao in listaOperacoes where operacao.codigoAcao == ativo {
                 
-                    nomeAtivo = operacao.nomeAtivo
-                    if operacao.tipoOperacao == "C"{
-                        if precoMedio == 0 {
-                            precoMedio = operacao.precoUnitario
-                        } else {
-                            precoMedio = ((precoMedio * Float(qtyTotal)) + (operacao.precoUnitario * Float(operacao.quantidadeAcoes)))/Float((qtyTotal+operacao.quantidadeAcoes))
-                        }
-                        qtyTotal += operacao.quantidadeAcoes
-                        custo += operacao.custoOperacao
+                nomeAtivo = operacao.nomeAtivo
+                if operacao.tipoOperacao == "C"{
+                    if precoMedio == 0 {
+                        precoMedio = operacao.precoUnitario
+                    } else {
+                        precoMedio = ((precoMedio * Float(qtyTotal)) + (operacao.precoUnitario * Float(operacao.quantidadeAcoes)))/Float((qtyTotal+operacao.quantidadeAcoes))
                     }
-                    else if operacao.tipoOperacao == "V"{
-                        qtyTotal -= operacao.quantidadeAcoes
-                        custo -= operacao.custoOperacao
-                        if qtyTotal == 0 {
-                            print("O ativo \(ativo) zerou!")
-                            precoMedio = 0
-                            custo = 0
-                        }
+                    qtyTotal += operacao.quantidadeAcoes
+                    custo += (operacao.custoEmolumento + operacao.custoLiquidacao + operacao.custoCorretagem + operacao.custoISS + operacao.custoOutras )
+                }
+                else if operacao.tipoOperacao == "V"{
+                    qtyTotal -= operacao.quantidadeAcoes
+                    custo -= (operacao.custoEmolumento + operacao.custoLiquidacao + operacao.custoCorretagem + operacao.custoISS + operacao.custoOutras )
+                    if qtyTotal == 0 {
+                        print("O ativo \(ativo) zerou!")
+                        precoMedio = 0
+                        custo = 0
                     }
+                }
             }
             if qtyTotal != 0 {
                 carteiraAcoes.append(CarteiraDeAcoes(cod: ativo, nome: nomeAtivo, qty: qtyTotal, preco: precoMedio, custo: custo))
@@ -180,7 +173,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     //
     //MARK: - Monta a Tabela de ativos na carteira
-
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return carteiraAcoes.count
     }
@@ -195,9 +188,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         cell.quantidadeTotal.text = String(informacaoCompletaAcao.quantidadeTotal)
         cell.precoMedioLabel.text = "R$ "+String(format: "%.2f", informacaoCompletaAcao.precoMedio)
         
-        cell.acoesView.layer.cornerRadius = 8
-//        cell.acoesView.layer.shadowRadius = 4
-//        cell.acoesView.layer.shadowOpacity = 1
+        cell.acoesView.layer.cornerRadius = 7
         cell.acoesView.layer.masksToBounds = true
         
         buscaCotacao(ativo: informacaoCompletaAcao.codigoAcao, for: cell, indexPath: indexPath)
@@ -211,7 +202,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         if let linhaSelecionada = tableView.indexPathForSelectedRow {
-        
+            
             ativoSelecionado = carteiraAcoes[linhaSelecionada.row].codigoAcao
             nomeSelecionado = carteiraAcoes[linhaSelecionada.row].nomeAcao
             quantidadeTotal = carteiraAcoes[linhaSelecionada.row].quantidadeTotal
@@ -227,7 +218,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             
             acoesTableView.deselectRow(at: indexPath, animated: true)
             performSegue(withIdentifier: "showDetail", sender: self)
-
+            
         }
     }
     
@@ -257,7 +248,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         todasAsOperacoes = []
         for c in listaOperacoes {
             if c.codigoAcao == ativo {
-                todasAsOperacoes.append(Operacao(cod: c.codigoAcao, qty: c.quantidadeAcoes, preco: c.precoUnitario, operacao: c.tipoOperacao, data: c.dataOperacao, nome: c.nomeAtivo, custo: c.custoOperacao))
+                todasAsOperacoes.append(Operacao(cod: c.codigoAcao, qty: c.quantidadeAcoes, preco: c.precoUnitario, operacao: c.tipoOperacao, data: c.dataOperacao, nome: c.nomeAtivo, corretagem: c.custoCorretagem, liquidacao: c.custoLiquidacao, emolumento: c.custoEmolumento, ISS: c.custoISS, outras: c.custoOutras))
             }
         }
     }
@@ -284,7 +275,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                     cell.precoAtualLabel.text = "N/D"
                     print("Error: \(response.result.error!)")
                 }
-            }
+        }
     }
     
     func parseResultado(json: JSON) -> String {

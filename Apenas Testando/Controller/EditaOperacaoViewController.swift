@@ -46,6 +46,8 @@ class EditaOperacaoViewController: UIViewController {
         dataTextField.text = formatoData.string(from:dataOperacao)
         quantidadeTextField.text = String(qty)
         precoTextField.text = String(preco)
+        corretagemTextField.text = "TBD"
+        
     }
 
     func carregaCoreData() {

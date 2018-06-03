@@ -22,6 +22,7 @@ class DetalhesAtivos: UIViewController, UITableViewDataSource, UITableViewDelega
     @IBOutlet weak var custoAquisicaoLabel: UILabel!
     @IBOutlet weak var vendaTotalLabel: UILabel!
     
+    @IBOutlet weak var detalhesView: UIView!
     
     @IBOutlet weak var listaOperacoes: UITableView!
     
@@ -57,8 +58,8 @@ class DetalhesAtivos: UIViewController, UITableViewDataSource, UITableViewDelega
 //        listaOperacoes.estimatedRowHeight = 85
 //        listaOperacoes.rowHeight = UITableViewAutomaticDimension
         
-        let backgroundGradientColors:[UIColor] = [UIColor.init(hexString: "#3d3d3d")!,UIColor.init(hexString: "#6FDBFD")!]
-        view.backgroundColor = UIColor.init(gradientStyle: .topToBottom, withFrame: view.frame, andColors: backgroundGradientColors)
+//        let backgroundGradientColors:[UIColor] = [UIColor.init(hexString: "#3d3d3d")!,UIColor.init(hexString: "#6FDBFD")!]
+//        view.backgroundColor = UIColor.init(gradientStyle: .topToBottom, withFrame: view.frame, andColors: backgroundGradientColors)
         
         precoVenda = precoDeMercado
         let custoVenda = calculaCustos(qty: Float(quantidadeTotal), preco: precoVenda)
@@ -67,6 +68,8 @@ class DetalhesAtivos: UIViewController, UITableViewDataSource, UITableViewDelega
         let resultadoLiquido = vendaTotal-valorTotal-custoAquisicao-custoVenda
         let resultadoPercentual = resultadoLiquido / valorTotal * 100
         
+        detalhesView.layer.cornerRadius = 6
+        detalhesView.layer.masksToBounds = true
         
         precoMedioLabel.text = String(format: "R$ %.2f", precoMedio)
         quantidadeTotalLabel.text = String(quantidadeTotal)
@@ -176,13 +179,15 @@ class DetalhesAtivos: UIViewController, UITableViewDataSource, UITableViewDelega
             //cell.fundoCelula.backgroundColor = UIColor.flatOrangeColorDark()
         }
         
+        let custoOperacao = listaDasOperacoes.custoEmolumento + listaDasOperacoes.custoCorretagem + listaDasOperacoes.custoOutras + listaDasOperacoes.custoLiquidacao + listaDasOperacoes.custoISS
+        
         cell.dataOperacaoLabel.text = formatoData.string(from: listaDasOperacoes.dataOperacao)
         cell.quantidadeOperacaoLabel.text = String(listaDasOperacoes.quantidadeAcoes)
         cell.precoAcaoLabel.text = "R$ "+String(format: "%.2f", listaDasOperacoes.precoUnitario)
-        cell.custoOperacaoLabel.text = "R$ "+String(format: "%.2f", listaDasOperacoes.custoOperacao)
-        cell.custoTotalLabel.text = "R$ "+String(format: "%.2f", listaDasOperacoes.custoOperacao + (listaDasOperacoes.precoUnitario * Float(listaDasOperacoes.quantidadeAcoes)))
+        cell.custoOperacaoLabel.text = "R$ "+String(format: "%.2f", custoOperacao)
+        cell.custoTotalLabel.text = "R$ "+String(format: "%.2f", custoOperacao + (listaDasOperacoes.precoUnitario * Float(listaDasOperacoes.quantidadeAcoes)))
         
-        cell.fundoCelula.layer.cornerRadius = 2
+        cell.fundoCelula.layer.cornerRadius = 6
         cell.fundoCelula.layer.masksToBounds = true
         
         return cell
@@ -203,6 +208,12 @@ class DetalhesAtivos: UIViewController, UITableViewDataSource, UITableViewDelega
         else if segue.identifier == "editOperacao" {
             let editaStockVC = segue.destination as! EditaOperacaoViewController
             editaStockVC.dataOperacao = dataOperacao
+            editaStockVC.cod = codigoDoAtivo
+            editaStockVC.qty = quantidadeTotal
+            editaStockVC.preco = precoMedio
+            editaStockVC.operacao = "TBD"
+            editaStockVC.nome = nomeDoAtivo
+            editaStockVC.custo = custoAquisicao
         }
     }
     
